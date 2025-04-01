@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Utilisateurs {% endblock %}
+
+{% block body %}
+<style>
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+   
+  background: #ffff;
+  font-family: 'Open Sans', sans-serif;
+}
+mytable {
+ margin-left:40 px;
+  background: #f4fff2;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #77c56c;;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #000;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+.disabled td {
+  color: #4F5F64;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #ffff;
+}
+
+</style>
+
+                  
+<div class="table-container">
+
+    <table id="mytable" style =" margin-left: 100px; ">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Genre</th>
+                <th>Adresse</th>
+                <th>Numéro de téléphone</th>
+                <th>Role</th>                
+                <th>Status</th>
+                <th>E-mail</th> 
+                <th>Supprimer</th>
+                <th>Modifier</th>
+              
+              
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in u %}
+                <tr>
+                    <td>{{ user.Nom }}</td>
+                    <td>{{ user.Prenom }}</td>
+                    <td>{{ user.Datedenaissance|date('Y-m-d') }}</td> 
+                    <td>{{ user.Genre }}</td>
+                    <td>{{ user.Adresse }}</td>
+                    <td>{{ user.Numdetelephone }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.Status }}</td>
+                    <td>{{ user.Email }}</td>
+                    <td>
+                        <a href="{{ path('supp_user', {'id': user.id}) }}">Supprimer</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('modif_user', {'id': user.id}) }}">Modifier</a>
+                    </td>
+                      
+                      
+                     
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

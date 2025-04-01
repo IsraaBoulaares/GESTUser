@@ -1,0 +1,22 @@
+# config/services.yaml
+
+parameters:
+
+services:
+    # Configuration par défaut pour les services dans ce fichier
+    _defaults:
+        autowire: true      # Injecte automatiquement les dépendances dans tes services
+        autoconfigure: true # Enregistre automatiquement tes services en tant que commandes, abonnés aux événements, etc.
+
+   
+
+    # Rend toutes les classes de `src/` disponibles comme services
+    # Cela crée un service par classe dont l'ID est le nom complet de la classe
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Ajoute ici d'autres définitions de services si nécessaire
